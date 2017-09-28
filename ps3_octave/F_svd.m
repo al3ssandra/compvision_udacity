@@ -1,0 +1,32 @@
+pointsFrameA = fopen('input/pts2d-pic_a.txt','r');
+pointsFrameB = fopen('input/pts2d-pic_b.txt','r');
+formatSpec = '%f';
+pointsA = fscanf(pointsFrameA,formatSpec);
+pointsA = reshape(pointsA,2,[])';
+pointsB = fscanf(pointsFrameB,formatSpec);
+pointsB = reshape(pointsB,2,[])';
+A = [pointsB(:,1).*[pointsA ones(size(pointsA,1),1)] pointsB(:,2).*[pointsA ones(size(pointsA,1),1)] [pointsA ones(size(pointsA,1),1)]];
+[U,D,V] = svd(A'*A);
+F = V(:,end);
+F = reshape(F,3,3)';
+[U,D,V] = svd(F);
+D(3,3) = 0;
+F = U*D*V';
+epLines = F*[pointsA ones(size(pointsA,1),1)]'; 
+I = imread('input/pic_b.jpg');
+P_UL = [1 1 1];
+P_BL = [1 size(I,1) 1]; 
+P_UR = [size(I,2) 1 1];
+P_BR = [size(I,2) size(I,1) 1]; 
+l_L = cross(P_UL,P_BL)';
+l_R = cross(P_UR,P_BR)';
+pointsLeft = cross(epLines,repmat(l_L,1,size(pointsA,1)));
+pointsLeft = pointsLeft./repmat(pointsLeft(3,:),3,1);
+pointsLeft = pointsLeft(1:2,:);
+pointsRight = cross(epLines,repmat(l_R,1,size(pointsA,1)));
+pointsRight = pointsRight./repmat(pointsRight(3,:),3,1);
+pointsRight = pointsRight(1:2,:);
+x = [pointsLeft(1,:);pointsRight(1,:)];
+y = [pointsLeft(2,:);pointsRight(2,:)];
+imshow(I); hold on; line(x,y)
+saveas(gcf,'epipolarLinesB.jpg')
