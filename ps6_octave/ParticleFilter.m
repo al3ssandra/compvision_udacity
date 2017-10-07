@@ -40,5 +40,10 @@ for k = 1:numFrames
     % Show particles and estimated state
     show_particles(Particles,frame); 
     show_state_estimated(Particles,Weights,frame,windowSize);
+    M(k) = getframe;
     
 end
+  v = VideoWriter('romneytrack.avi');
+  open(v)
+  writeVideo(v,M);
+  close(v)
