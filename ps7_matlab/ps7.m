@@ -28,3 +28,8 @@ BW = B > 15;
  
        % Playback movie once at the video's frame rate
        %movie(hf, M, 1, readerobj.FrameRate);
+       
+       v = VideoWriter('binary.avi');
+       open(v)
+       writeVideo(v,M);
+       close(v)
