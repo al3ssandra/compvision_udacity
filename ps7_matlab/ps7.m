@@ -20,23 +20,26 @@ BW = B > 15;
      M(j) = getframe;
  end
  close all;
-  % Create a figure
-       %hf = figure; 
        
-       % Resize figure based on the video's width and height
-       %set(hf, 'position', [150 150 readerobj.Width readerobj.Height])
- 
-       % Playback movie once at the video's frame rate
-       %movie(hf, M, 1, readerobj.FrameRate);
-       
-       %v = VideoWriter('binary.avi');
-       %open(v)
-       %writeVideo(v,M);
-       %close(v)
+v = VideoWriter('output/binaryA1.avi');
+open(v)
+writeVideo(v,M);
+close(v)
        
 %Motion History Images
-t = 50;
+
+%Action one settings
+t = 60;
 actionStop = 100;
+
+%Action 2 settings
+%t = 50;
+%actionStop = 70;
+
+%Action 3 settings
+%t = 80;
+%actionStop = 100;
+
 rows = readerobj.Height;
 cols = readerobj.width;
 MHI_previous = ones(rows,cols);
@@ -47,5 +50,5 @@ for i = actionStop - t + 1:actionStop
     MHI_previous = MHI;
 end
 MHI_scaled = MHI./max(MHI(:));
-%imshow(MHI_scaled);
-%imwrite(MHI_scaled,'output/MHIA1.jpeg')
+imshow(MHI_scaled);
+imwrite(MHI_scaled,'output/MHIA1.jpeg')
