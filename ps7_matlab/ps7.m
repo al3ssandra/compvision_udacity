@@ -28,7 +28,7 @@ close(v)
        
 %Motion History Images
 
-%Action one settings
+%Action 1 settings
 t = 60;
 actionStop = 100;
 
