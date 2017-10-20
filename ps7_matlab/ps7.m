@@ -15,16 +15,16 @@ BW = B > 15;
  for j=1:numFrames - 1
      se = strel('disk',5);
      afterOpening(:,:,j) = imopen(BW(:,:,j),se);
-     imshow(afterOpening(:,:,j))
+     %imshow(afterOpening(:,:,j))
      %imshow(BW(:,:,j));
-     M(j) = getframe;
+     %M(j) = getframe;
  end
  close all;
        
-v = VideoWriter('output/binaryA1.avi');
-open(v)
-writeVideo(v,M);
-close(v)
+%v = VideoWriter('output/binaryA1.avi');
+%open(v)
+%writeVideo(v,M);
+%close(v)
        
 %Motion History Images
 
@@ -50,5 +50,5 @@ for i = actionStop - t + 1:actionStop
     MHI_previous = MHI;
 end
 MHI_scaled = MHI./max(MHI(:));
-imshow(MHI_scaled);
-imwrite(MHI_scaled,'output/MHIA1.jpeg')
+%imshow(MHI_scaled);
+%imwrite(MHI_scaled,'output/MHIA1.jpeg')

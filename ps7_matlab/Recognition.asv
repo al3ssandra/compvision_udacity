@@ -22,12 +22,24 @@ actionStopA3 = 100;
 %Obtain Descriptors for all the videos of each action
 %Action 1
 videoFiles = dir('input/ps7A1*');
-[CM_dataA1, SI_dataA1] = actionDescriptors(videoFiles);
+[CM_descA1, SI_descA1] = actionDescriptors(videoFiles);
 
 %Action 2
 videoFiles = dir('input/ps7A2*');
-[CM_dataA2, SI_dataA2] = actionDescriptors(videoFiles);
+[CM_descA2, SI_descA2] = actionDescriptors(videoFiles);
 
 %Action 3
 videoFiles = dir('input/ps7A3*');
-[CM_dataA3, SI_dataA3] = actionDescriptors(videoFiles);
+[CM_descA3, SI_descA3] = actionDescriptors(videoFiles);
+
+%Generate Confusion Matrix using Central Moments 
+EucDist_11 = bsxfun(@minus, CM_descA1, modelA1_CM);
+EucDist_11 = sqrt(sum(EucDist_11.^2,2));
+
+EucDist_12 = bsxfun(@minus, CM_descA1, modelA2_CM);
+EucDist_12 = sqrt(sum(EucDist_12.^2,2));
+
+EucDist_13 = bsxfun(@minus, CM_descA1, modelA3_CM);
+EucDist_13 = sqrt(sum(EucDist_13.^2,2));
+
+

@@ -1,0 +1,12 @@
+function [CM_desc, SI_desc] = actionDescriptors(videoFiles)
+    
+    for i = 1:length(videoFiles)
+        videoFileName = strcat('input/',videoFiles(i).name);
+        readerobj = VideoReader(videoFileName);
+        numFrames = get(readerobj, 'NumberOfFrames');
+        actionStop = numFrames - round(0.1*numFrames);
+        tao = round(numFrames/2);
+        [CM, SI] = MHIdesc(readerobj,tao,actionStop);
+    end
+    CM_desc = Descriptors(1:2:end,:);
+    SI_desc = Descriptors(2:2:end,:);
