@@ -1,6 +1,6 @@
 %Confusion Matrix
 
-%load('ps7.mat')
+load('ps7.mat')
 
 %Generate Confusion Matrix using Central Moments 
 ModelCM = [modelA1_CM; modelA2_CM; modelA3_CM];
@@ -38,4 +38,8 @@ for i = 1:3
 end
 
 imagesc(CMatrix_CM); colormap('Gray');
+saveas(gcf,'output/CM_ConfMatrix.jpg');
+close all;
 imagesc(CMatrix_SI); colormap('Gray');
+saveas(gcf,'output/SI_ConfMatrix.jpg');
+close all;
