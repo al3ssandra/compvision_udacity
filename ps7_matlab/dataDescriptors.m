@@ -1,4 +1,4 @@
-function [CM_desc, SI_desc] = actionDescriptors(videoFiles)
+function [CM_desc, SI_desc] = dataDescriptors(videoFiles)
     
     CM_desc = [];
     SI_desc = [];

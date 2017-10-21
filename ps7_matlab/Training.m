@@ -22,12 +22,12 @@ actionStopA3 = 100;
 %Obtain Descriptors for all the videos of each action
 %Action 1
 videoFiles = dir('input/ps7A1*');
-[CM_dataA1, SI_dataA1] = actionDescriptors(videoFiles);
+[CM_dataA1, SI_dataA1] = dataDescriptors(videoFiles);
 
 %Action 2
 videoFiles = dir('input/ps7A2*');
-[CM_dataA2, SI_dataA2] = actionDescriptors(videoFiles);
+[CM_dataA2, SI_dataA2] = dataDescriptors(videoFiles);
 
 %Action 3
 videoFiles = dir('input/ps7A3*');
-[CM_dataA3, SI_dataA3] = actionDescriptors(videoFiles);
+[CM_dataA3, SI_dataA3] = dataDescriptors(videoFiles);
